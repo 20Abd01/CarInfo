@@ -3,6 +3,179 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Car Make</label>
+            <span class="text-danger">*</span>
+            <div class="input-group">
+                <select class="form-select form-control selectpicker" id="CarMakeId" name="CarMakeId" 
+                asp-items="@(new SelectList(ViewBag.CarMakes, "Make_ID", "Make_Name"))">
+                    <option value="" selected>-- Please Select --</option>
+                </select>
+
+                <span class="invalid-feedback text-danger field-validation-valid" data-valmsg-for="CarMakeId"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Year</label>
+            <span class="text-danger">*</span>
+            <div class="input-group">
+                <select class="form-select form-control selectpicker" id="Year" name="Year">
+                    <option value="" selected>-- Please Select --</option>
+                    @foreach (var year in Enumerable.Range(1990, DateTime.Now.Year - 1989).Reverse())
+                    {
+                        <option value="@year">@year</option>
+                    }
+                </select>
+
+                <span class="invalid-feedback text-danger field-validation-valid" data-valmsg-for="Year"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Vehicle Type</label>
+            <div class="input-group">
+                <select class="form-select form-control selectpicker" id="VehicleTypeId" name="VehicleTypeId">
+                    <option value="" selected>-- Please Select --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Models For Car Make By Year</label>
+            <div class="input-group">
+                <select class="form-select form-control selectpicker" id="CarModelId" name="CarModelId">
+                    <option value="" selected>-- Please Select --</option>
+                </select>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+        let fieldRequiredMessage = 'Field Required';
+
+        function changeVaildationMessage(id, message) {
+            let errorSpan =  $(`#${id}-error`); // Select the error span
+
+            if (errorSpan.length > 0) {
+                errorSpan.html(message);
+            }
+            else {
+                $(`[data-valmsg-for="${id}"]`).append(`<span id="${id}-error" class="text-danger">${message}</span>`);
+            }
+        }
+
+        function removeVaildationMessage(id) {
+            let errorSpan =  $(`#${id}-error`); // Select the error span
+            errorSpan.remove();
+        }
+
+        function validateEmptyInput(id) {
+            let isValid = true;
+            let inputValue = $(`#${id}`).val().trim();
+
+            if(inputValue === "") {
+                isValid = false
+                changeVaildationMessage(id, fieldRequiredMessage)
+            }
+            else {
+                // If not empty, remove the error message
+                removeVaildationMessage(id);
+            }
+
+            return isValid;
+        }
+
+        var defaultItem = "<option value=''>-- Please Select --</option>";
+        
+        
+        // CarMakeId
+        $('#CarMakeId').change(function () {
+            validateEmptyInput("CarMakeId");
+            validateEmptyInput("Year");
+            showLoading();
+            $('#VehicleTypeId option').remove();
+
+            $.getJSON('/Home/GetVehicleTypesForMakeId', { carMakeId: $('#CarMakeId').val() }, function (data) {
+
+                    $('#VehicleTypeId option').remove();
+                    $('#VehicleTypeId').append(defaultItem);
+
+                    $('#CarModelId option').remove();
+                    $('#CarModelId').append(defaultItem);
+
+                    validateEmptyInput("VehicleTypeId");
+
+                    $.each(data, function () {
+                        $('#VehicleTypeId').append('<option value=' +
+                            this.vehicleTypeId + '>' + this.vehicleTypeName + '</option>');
+                    });
+
+                    hideLoading();
+
+            }).fail(function () {
+                $('#VehicleTypeId option').remove();
+                $('#VehicleTypeId').append(defaultItem);
+                $('#CarMakeId option[value=""]').prop('selected', true);
+                displayErrorMessage("Data Fetch Error");
+                validateEmptyInput("CarMakeId");
+                validateEmptyInput("VehicleTypeId");
+
+                hideLoading();
+               });
+
+            if (validateEmptyInput("CarMakeId") && validateEmptyInput("Year"))
+            {
+                GetModelsForMakeIdYear(parseInt(('#CarMakeId').val()), parseInt(('#Year').val()))
+            }
+            else
+            {
+                $('#CarModelId option').remove();
+                $('#CarModelId').append(defaultItem);
+            }
+        });
+
+        // Year
+        $('#Year').change(function () {
+
+            if (validateEmptyInput("CarMakeId") && validateEmptyInput("Year"))
+            {
+                GetModelsForMakeIdYear(parseInt($('#CarMakeId').val()), parseInt($('#Year').val()));
+            }
+            else 
+            {
+                $('#CarModelId option').remove();
+                $('#CarModelId').append(defaultItem);
+            }
+        });
+
+
+        function GetModelsForMakeIdYear(carMakeId, year) {
+
+            showLoading();
+
+            $.getJSON('/Home/GetModelsForMakeIdYear', { carMakeId: carMakeId , year: year }, function (data) {
+
+                    $('#CarModelId option').remove();
+                    $('#CarModelId').append(defaultItem);
+
+                    $.each(data, function () {
+                        $('#CarModelId').append('<option value=' +
+                            this.model_Id + '>' + this.model_Name + '</option>');
+                    });
+
+                    hideLoading();
+
+            }).fail(function () {
+                $('#CarModelId option').remove();
+                $('#CarModelId').append(defaultItem);
+                $('#CarMakeId option[value=""]').prop('selected', true);
+                displayErrorMessage("Data Fetch Error");
+                validateEmptyInput("CarMakeId");
+
+                hideLoading();
+               });
+
+        }
+
+</script>

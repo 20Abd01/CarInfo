@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CarInfo.UI</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/main.css" asp-append-version="true">
+    
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CarInfo.UI.styles.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/assets/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <div id="animationContainer" class="animation-container" hidden></div>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -42,9 +50,51 @@
             &copy; 2025 - CarInfo.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/assets/loading-animation/lottie.min.js"></script>
+    <script>
+        function changeAllColors() {
+            var svgElement = document.getElementById('animationContainer');
+            var pathElements = svgElement.querySelectorAll('path');
+
+            pathElements.forEach(function (path) {
+
+                $(path).css({
+                    'fill':   '#058F82',
+                    'stroke': '#058F82',
+                    'color':  '#058F82',
+                });
+                path.setAttribute('fill',   '#058F82');
+                path.setAttribute('color',  '#058F82');
+                path.setAttribute('stroke', '#058F82');
+            });
+        }
+        var animationData = { "nm": "loading", "ddd": 0, "h": 1080, "w": 1080, "meta": { "g": "@@lottiefiles/toolkit-js 0.33.2" }, "layers": [{ "ty": 0, "nm": "gika", "sr": 1, "st": 0, "op": 250, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [960, 540, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [540, 540, 0], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "w": 1920, "h": 1080, "refId": "comp_0", "ind": 1 }, { "ty": 4, "nm": "3", "sr": 1, "st": 0, "op": 250, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [4, 10, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [540, 540, 0], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "shapes": [{ "ty": "gr", "bm": 0, "hd": false, "mn": "ADBE Vector Group", "nm": "Ellipse 1", "ix": 1, "cix": 2, "np": 2, "it": [{ "ty": "el", "bm": 0, "hd": false, "mn": "ADBE Vector Shape - Ellipse", "nm": "Ellipse Path 1", "d": 1, "p": { "a": 0, "k": [0, 0], "ix": 3 }, "s": { "a": 0, "k": [38, 38], "ix": 2 } }, { "ty": "fl", "bm": 0, "hd": false, "mn": "ADBE Vector Graphic - Fill", "nm": "#somename", "c": { "a": 0, "k": [0.1608, 0.6667, 0.8824], "ix": 4 }, "r": 1, "o": { "a": 0, "k": 100, "ix": 5 } }, { "ty": "tr", "a": { "a": 0, "k": [0, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100], "ix": 3 }, "sk": { "a": 0, "k": 0, "ix": 4 }, "p": { "a": 0, "k": [4, 10], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 6 }, "sa": { "a": 0, "k": 0, "ix": 5 }, "o": { "a": 0, "k": 100, "ix": 7 } }] }], "ind": 2 }], "v": "5.1.18", "fr": 25, "op": 44, "ip": 0, "assets": [{ "nm": "", "id": "comp_0", "layers": [{ "ty": 0, "nm": "himnakan", "sr": 1, "st": 0, "op": 250, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [960, 540, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [960, 540, 0], "ix": 2 }, "r": { "a": 0, "k": 180, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "w": 1920, "h": 1080, "refId": "comp_1", "ind": 1 }, { "ty": 0, "nm": "himnakan", "sr": 1, "st": 0, "op": 250, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [960, 540, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [960, 540, 0], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "w": 1920, "h": 1080, "refId": "comp_1", "ind": 2 }] }, { "nm": "", "id": "comp_1", "layers": [{ "ty": 3, "nm": "1", "sr": 1, "st": 3, "op": 253, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [60, 60, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [960, 540, 0], "ix": 2 }, "r": { "a": 1, "k": [{ "o": { "x": 0.673, "y": 0 }, "i": { "x": 0.285, "y": 1 }, "s": [0], "t": 3 }, { "s": [-180], "t": 23 }], "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 0, "ix": 11 } }, "ef": [], "ind": 1 }, { "ty": 4, "nm": "1", "sr": 1, "st": 3, "op": 253, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [4, 10, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 1, "k": [{ "o": { "x": 0.751, "y": 0 }, "i": { "x": 0.17, "y": 1 }, "s": [-100, 60, 0], "t": 23, "ti": [-53.3333320617676, 0, 0], "to": [0, 0, 0] }, { "s": [220, 60, 0], "t": 43 }], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "shapes": [{ "ty": "gr", "bm": 0, "hd": false, "mn": "ADBE Vector Group", "nm": "Ellipse 1", "ix": 1, "cix": 2, "np": 2, "it": [{ "ty": "el", "bm": 0, "hd": false, "mn": "ADBE Vector Shape - Ellipse", "nm": "Ellipse Path 1", "d": 1, "p": { "a": 0, "k": [0, 0], "ix": 3 }, "s": { "a": 0, "k": [38, 38], "ix": 2 } }, { "ty": "fl", "bm": 0, "hd": false, "mn": "ADBE Vector Graphic - Fill", "nm": "#somename", "c": { "a": 0, "k": [0.1608, 0.6667, 0.8824], "ix": 4 }, "r": 1, "o": { "a": 0, "k": 100, "ix": 5 } }, { "ty": "tr", "a": { "a": 0, "k": [0, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100], "ix": 3 }, "sk": { "a": 0, "k": 0, "ix": 4 }, "p": { "a": 0, "k": [4, 10], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 6 }, "sa": { "a": 0, "k": 0, "ix": 5 }, "o": { "a": 0, "k": 100, "ix": 7 } }] }], "ind": 2, "parent": 1 }, { "ty": 3, "nm": "2", "sr": 1, "st": 0, "op": 250, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [60, 60, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [960, 540, 0], "ix": 2 }, "r": { "a": 1, "k": [{ "o": { "x": 0.673, "y": 0 }, "i": { "x": 0.285, "y": 1 }, "s": [0], "t": 0 }, { "s": [-180], "t": 20 }], "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 0, "ix": 11 } }, "ef": [], "ind": 3 }, { "ty": 4, "nm": "2", "sr": 1, "st": 0, "op": 250, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [4, 10, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 1, "k": [{ "o": { "x": 0.735, "y": 0 }, "i": { "x": 0.188, "y": 1 }, "s": [-20, 60, 0], "t": 20, "ti": [0, 0, 0], "to": [0, 0, 0] }, { "s": [140, 60, 0], "t": 43 }], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "shapes": [{ "ty": "gr", "bm": 0, "hd": false, "mn": "ADBE Vector Group", "nm": "Ellipse 1", "ix": 1, "cix": 2, "np": 2, "it": [{ "ty": "el", "bm": 0, "hd": false, "mn": "ADBE Vector Shape - Ellipse", "nm": "Ellipse Path 1", "d": 1, "p": { "a": 0, "k": [0, 0], "ix": 3 }, "s": { "a": 0, "k": [38, 38], "ix": 2 } }, { "ty": "fl", "bm": 0, "hd": false, "mn": "ADBE Vector Graphic - Fill", "nm": "#someone", "c": { "a": 0, "k": [0.1608, 0.6667, 0.8824], "ix": 4 }, "r": 1, "o": { "a": 0, "k": 100, "ix": 5 } }, { "ty": "tr", "a": { "a": 0, "k": [0, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100], "ix": 3 }, "sk": { "a": 0, "k": 0, "ix": 4 }, "p": { "a": 0, "k": [4, 10], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 6 }, "sa": { "a": 0, "k": 0, "ix": 5 }, "o": { "a": 0, "k": 100, "ix": 7 } }] }], "ind": 4, "parent": 3 }, { "ty": 4, "nm": "9", "sr": 1, "st": 3, "op": 253, "ip": 3, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [4, 10, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [960, 540, 0], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "shapes": [{ "ty": "gr", "bm": 0, "hd": false, "mn": "ADBE Vector Group", "nm": "Ellipse 1", "ix": 1, "cix": 2, "np": 3, "it": [{ "ty": "el", "bm": 0, "hd": false, "mn": "ADBE Vector Shape - Ellipse", "nm": "Ellipse Path 1", "d": 1, "p": { "a": 0, "k": [0, 0], "ix": 3 }, "s": { "a": 0, "k": [324, 324], "ix": 2 } }, { "ty": "tm", "bm": 0, "hd": false, "mn": "ADBE Vector Filter - Trim", "nm": "Trim Paths 1", "ix": 2, "e": { "a": 1, "k": [{ "o": { "x": 0.704, "y": 0 }, "i": { "x": 0.316, "y": 1 }, "s": [100], "t": 3 }, { "s": [50], "t": 26 }], "ix": 2 }, "o": { "a": 0, "k": -90, "ix": 3 }, "s": { "a": 1, "k": [{ "o": { "x": 0.704, "y": 0 }, "i": { "x": 0.316, "y": 1 }, "s": [100], "t": 6 }, { "s": [50], "t": 29 }], "ix": 1 }, "m": 1 }, { "ty": "st", "bm": 0, "hd": false, "mn": "ADBE Vector Graphic - Stroke", "nm": "#somename", "lc": 1, "lj": 1, "ml": 4, "o": { "a": 0, "k": 100, "ix": 4 }, "w": { "a": 0, "k": 2, "ix": 5 }, "c": { "a": 0, "k": [0.1608, 0.6667, 0.8824], "ix": 3 } }, { "ty": "tr", "a": { "a": 0, "k": [0, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100], "ix": 3 }, "sk": { "a": 0, "k": 0, "ix": 4 }, "p": { "a": 0, "k": [4, 10], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 6 }, "sa": { "a": 0, "k": 0, "ix": 5 }, "o": { "a": 0, "k": 100, "ix": 7 } }] }], "ind": 5 }, { "ty": 4, "nm": "8", "sr": 1, "st": 0, "op": 250, "ip": 0, "hd": false, "ddd": 0, "bm": 0, "hasMask": false, "ao": 0, "ks": { "a": { "a": 0, "k": [4, 10, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100, 100], "ix": 6 }, "sk": { "a": 0, "k": 0 }, "p": { "a": 0, "k": [960, 540, 0], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 10 }, "sa": { "a": 0, "k": 0 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "ef": [], "shapes": [{ "ty": "gr", "bm": 0, "hd": false, "mn": "ADBE Vector Group", "nm": "Ellipse 1", "ix": 1, "cix": 2, "np": 3, "it": [{ "ty": "el", "bm": 0, "hd": false, "mn": "ADBE Vector Shape - Ellipse", "nm": "Ellipse Path 1", "d": 1, "p": { "a": 0, "k": [0, 0], "ix": 3 }, "s": { "a": 0, "k": [163, 163], "ix": 2 } }, { "ty": "tm", "bm": 0, "hd": false, "mn": "ADBE Vector Filter - Trim", "nm": "Trim Paths 1", "ix": 2, "e": { "a": 1, "k": [{ "o": { "x": 0.704, "y": 0 }, "i": { "x": 0.316, "y": 1 }, "s": [100], "t": 0 }, { "s": [50], "t": 26 }], "ix": 2 }, "o": { "a": 0, "k": -90, "ix": 3 }, "s": { "a": 1, "k": [{ "o": { "x": 0.704, "y": 0 }, "i": { "x": 0.316, "y": 1 }, "s": [100], "t": 3 }, { "s": [50], "t": 29 }], "ix": 1 }, "m": 1 }, { "ty": "st", "bm": 0, "hd": false, "mn": "ADBE Vector Graphic - Stroke", "nm": "#somename", "lc": 1, "lj": 1, "ml": 4, "o": { "a": 0, "k": 100, "ix": 4 }, "w": { "a": 0, "k": 2, "ix": 5 }, "c": { "a": 0, "k": [0.1608, 0.6667, 0.8824], "ix": 3 } }, { "ty": "tr", "a": { "a": 0, "k": [0, 0], "ix": 1 }, "s": { "a": 0, "k": [100, 100], "ix": 3 }, "sk": { "a": 0, "k": 0, "ix": 4 }, "p": { "a": 0, "k": [4, 10], "ix": 2 }, "r": { "a": 0, "k": 0, "ix": 6 }, "sa": { "a": 0, "k": 0, "ix": 5 }, "o": { "a": 0, "k": 100, "ix": 7 } }] }], "ind": 6 }] }] };
+        var animationContainer = document.getElementById('animationContainer');
+        var animation = lottie.loadAnimation({
+            container: animationContainer,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            animationData: animationData
+        });
+        changeAllColors();
+
+        function showLoading() {
+            let loadingDiv = document.getElementById("animationContainer");
+            loadingDiv.removeAttribute("hidden");
+            loadingDiv.style.display = "flex";
+        }
+
+        function hideLoading() {
+            let loadingDiv = document.getElementById("animationContainer");
+            loadingDiv.style.display = "none";
+            loadingDiv.setAttribute("hidden", "");
+
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
